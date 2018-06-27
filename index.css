@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, silver, black) /*设置背景渐变*/
+}
+
+#radar {
+  font-size: 40px;
+  width: calc(8em + 1.5em);
+  height: calc(8em + 1.5em);
+  position: relative;
+  border-radius: 50%;
+  background: 
+    linear-gradient( 90deg, transparent 49.75%, darkgreen 49.75%, darkgreen 50.25%, transparent 50.25%), /*设置十字叉横轴 0.5%宽*/
+    linear-gradient( transparent 49.75%, darkgreen 49.75%, darkgreen 50.25%, transparent 50.25%), /*设置十字叉纵轴 0.5%宽*/
+    repeating-radial-gradient( transparent 0, transparent 0.95em, darkgreen 0.95em, darkgreen 1em),  /*设置雷达波纹 0.05em宽*/
+    linear-gradient(black, black); /*设置背景*/
+}
+
+#radar::before {
+  content: '';
+  position: absolute;
+  width: calc(8em / 2);
+  height: calc(8em / 2);
+  top: calc(1.5em / 2);
+  left: calc(1.5em /2);
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0) 50%, rgba(0, 192, 0, 1) 100%); /*设置扫描图像*/
+  border-radius: 100% 0 0 0;
+  transform-origin: right bottom;
+  animation: scanning 5s linear infinite;
+}
+
+@keyframes scanning {
+  to {
+    transform: rotate(360deg)
+  }
+}
