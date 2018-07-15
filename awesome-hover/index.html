@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>awesome-hover</title>
+  <style>
+    .button {
+      position: relative;
+      font-size: 1.2em;
+      padding: 1em 2em;
+      color: white;
+      background-color: #f72359;
+      border-radius: 100px;
+      overflow: hidden;
+      cursor: pointer;
+      border: none;
+      text-align: center;
+    }
+
+    .button span {
+      position: relative;
+    }
+
+    .button::before {
+      --size: 0;
+      content: '';
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--size);
+      height: var(--size);
+      background: radial-gradient(circle closest-side, #4405f7, transparent);
+      transform: translate(-50%, -50%);
+      transition: width 0.2s ease, height 0.2s ease;
+    }
+
+    .button:hover::before{
+      --size: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="button">
+    <span>Hover me I'am Awesome</span>
+  </div>
+
+  <script>  
+    var btn = document.querySelector('.button');
+    // 鼠标移动获取鼠标在button上的位置并给button设置位置属性
+    btn.onmousemove = function (e) {
+      console.log(e);
+      console.log(e.target)
+      var e = e || window.event;
+      var x = e.pageX - e.target.offsetLeft;
+      var y = e.pageY - e.target.offsetTop;
+
+      btn.style.setProperty('--x', `${x}px`);
+      btn.style.setProperty('--y', `${y}px`);
+    }
+  </script>
+</body>
+
+</html>
